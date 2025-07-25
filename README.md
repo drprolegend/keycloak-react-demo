@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# React Keycloak Integration Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Questa applicazione dimostra l'integrazione di Keycloak con React per l'autenticazione degli utenti.
 
-## Available Scripts
+## Configurazione
 
-In the project directory, you can run:
+1. Crea un file `.env` nella root del progetto con le seguenti variabili:
 
-### `npm start`
+```
+REACT_APP_KEYCLOAK_URL=https://your-keycloak-url
+REACT_APP_KEYCLOAK_REALM=your-realm
+REACT_APP_KEYCLOAK_CLIENT_ID=your-client-id
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Configura il client in Keycloak:
+   - Access Type: `public`
+   - Standard Flow Enabled: `ON`
+   - Valid Redirect URIs: `http://localhost:3000/*`
+   - Web Origins: `http://localhost:3000`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installazione
 
-### `npm test`
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Avvio in Development
 
-### `npm run build`
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Build per Production
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Funzionalità
 
-### `npm run eject`
+- Login utente tramite Keycloak
+- Visualizzazione informazioni utente
+- Visualizzazione token JWT
+- Gestione automatica refresh token
+- Logout
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Note di Sicurezza
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- L'applicazione usa PKCE per la sicurezza
+- Non sono presenti secret nel codice
+- Il logging è abilitato solo in development
+- I token sono gestiti in modo sicuro da Keycloak
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Struttura del Progetto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `src/config.js` - Configurazione dell'applicazione
+- `src/keycloak.js` - Configurazione e inizializzazione Keycloak
+- `src/hooks/useKeycloak.js` - Hook React per la gestione dell'autenticazione
+- `src/App.js` - Componente principale con UI
 
-## Learn More
+## Requisiti
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Node.js >= 14
+- npm >= 6
+- Un'istanza Keycloak configurata
